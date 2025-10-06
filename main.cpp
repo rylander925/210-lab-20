@@ -16,16 +16,21 @@ private:
 public:
     // constructors
     Chair() {
+        const int MIN_LEGS = 3;
+        const int MAX_LEGS = 4;
+        const int MIN_PRICE = 100.00 * 100;
+        const int MAX_PRICE = 999.99 * 100;
+
         prices = new double[SIZE];
-        legs = 0;
+        legs = MIN_LEGS + (rand() % (MAX_LEGS - MIN_LEGS + 1));                         //random number from MIN_LEGS to MAX_LEGS
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = (MAX_PRICE + (rand() % (MAX_PRICE - MIN_PRICE + 1))) / 100.0;   //random number from MIN_PRICE to MAX_PRICE / 100
     }
-    Chair(int l) {
+    Chair(int l, const int p[SIZE]) {
         prices = new double[SIZE];
         legs = l;
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = p[i];           //copy values from given array
     }
 
     // setters and getters

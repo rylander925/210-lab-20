@@ -26,7 +26,7 @@ public:
         for (int i = 0; i < SIZE; i++)
             prices[i] = (MAX_PRICE + (rand() % (MAX_PRICE - MIN_PRICE + 1))) / 100.0;   //random number from MIN_PRICE to MAX_PRICE / 100
     }
-    Chair(int l, const double p[SIZE]) {
+    Chair(int l, double p[SIZE]) {
         prices = new double[SIZE];
         legs = l;
         for (int i = 0; i < SIZE; i++)
@@ -62,7 +62,8 @@ int main() {
     cout << fixed << setprecision(2);
 
     //creating pointer to first chair object
-    Chair *chairPtr = new Chair(4, {121.21, 232.32, 414.14});
+    double prices[SIZE] = {121.21, 232.32, 414.14};
+    Chair *chairPtr = new Chair(4, prices);
     chairPtr->setLegs(4);
     chairPtr->setPrices(121.21, 232.32, 414.14);
     chairPtr->print();

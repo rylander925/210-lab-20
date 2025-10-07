@@ -1,7 +1,6 @@
 /*
 COMSC-210 | Lab 20 | Rylan Der
 IDE Used: Visual Studio Code
-
 */
 
 #include <iostream>
@@ -25,8 +24,9 @@ public:
         prices = new double[SIZE];
         legs = MIN_LEGS + (rand() % (MAX_LEGS - MIN_LEGS + 1));                         //random number from MIN_LEGS to MAX_LEGS
         for (int i = 0; i < SIZE; i++)
-            prices[i] = (MAX_PRICE + (rand() % (MAX_PRICE - MIN_PRICE + 1))) / 100.0;   //random number from MIN_PRICE to MAX_PRICE / 100
+            prices[i] = (MIN_PRICE + (rand() % (MAX_PRICE - MIN_PRICE + 1))) / 100.0;   //random number from MIN_PRICE to MAX_PRICE / 100
     }
+    //Initializes chair object with given number of legs and prices
     Chair(int l, double p[SIZE]) {
         prices = new double[SIZE];
         legs = l;
@@ -63,26 +63,20 @@ int main() {
     cout << fixed << setprecision(2);
 
     //creating pointer to first chair object
-    double prices[SIZE] = {121.21, 232.32, 414.14};
-    Chair *chairPtr = new Chair(4, prices);
+    Chair *chairPtr = new Chair();
     chairPtr->setLegs(4);
     chairPtr->setPrices(121.21, 232.32, 414.14);
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3, {525.25, 434.34, 252.52});
+    double prices[SIZE] = {525.25, 434.34, 252.52};
+    Chair *livingChair = new Chair(3, prices);
     livingChair->print();
     delete livingChair;
     livingChair = nullptr;
 
     //creating dynamic array of chair objects
-    Chair *collection = new Chair[SIZE];
-    collection[0].setLegs(4);
-    collection[0].setPrices(441.41, 552.52, 663.63);
-    collection[1].setLegs(4);
-    collection[1].setPrices(484.84, 959.59, 868.68);
-    collection[2].setLegs(4);
-    collection[2].setPrices(626.26, 515.15, 757.57);
+    Chair *collection = new Chair[SIZE]; //default constructor initializes w/ random values
     for (int i = 0; i < SIZE; i++)
         collection[i].print();
     
